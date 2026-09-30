@@ -1,0 +1,8 @@
+# Saidas do diagnostico: contem dados de paciente linha a linha.
+# Cada um roda o script localmente; nada disso vai para o repositorio.
+saidas/
+
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
