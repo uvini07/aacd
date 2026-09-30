@@ -6,3 +6,6 @@ __pycache__/
 *.pyc
 .venv/
 .ipynb_checkpoints/
+
+# Notebook com saidas executadas: as tabelas trazem linhas de paciente.
+*_EXECUTADO.ipynb

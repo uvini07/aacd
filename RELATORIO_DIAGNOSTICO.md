@@ -339,3 +339,50 @@ python3 scripts/diagnostico.py
 Gera `saidas/base_60mais.csv`, `saidas/base_60menos.csv` e `saidas/pendencias.csv`.
 A pasta `saidas/` está no `.gitignore` — contém dados por paciente e não deve ser
 versionada.
+
+---
+
+## Notebook de análise
+
+`analise_quedas_aacd.ipynb` percorre a base passo a passo, no Jupyter: abre a
+planilha crua, mostra por que `read_excel` não funciona, achata os blocos, tipa as
+colunas, padroniza os textos e chega aos indicadores. 46 células de código, 10
+gráficos.
+
+```bash
+pip install -r requirements.txt
+jupyter lab analise_quedas_aacd.ipynb
+```
+
+O notebook é versionado **sem saídas**: as tabelas intermediárias mostram linhas de
+paciente, e o repositório precisa ficar privado antes de guardar isso. Rode
+localmente para gerar os resultados.
+
+### Indicadores produzidos
+
+Três famílias, mais um índice composto:
+
+| Família | Exemplos |
+|---|---|
+| Desfecho | taxa de queda no ano, taxa de queda recorrente, queda no último mês |
+| Fatores | % polifarmácia, % com dispositivo, velocidade mediana, % preensão abaixo do corte |
+| Qualidade do dado | % desfecho registrado, % força de MMII avaliada, completude média |
+
+**Índice de Alerta de Queda (IAQ)** — 0 a 4 pontos, um por critério: anda, toma 5+
+remédios, usa dispositivo de marcha, força de MMII abaixo da mediana do serviço.
+Calibração observada na aba 60+:
+
+| IAQ | Pacientes | Taxa de queda | Taxa recorrente |
+|---|---|---|---|
+| 0 | 9 | 33,3% | 11,1% |
+| 1 | 28 | 42,9% | 17,9% |
+| 2 | 51 | 45,1% | 23,5% |
+| 3 | 52 | 65,4% | 40,4% |
+| 4 | 21 | 76,2% | 57,1% |
+
+A taxa sobe de forma monotônica — o índice ordena o risco. Em validação cruzada
+(5 folds × 20 repetições) a AUC fica em torno de **0,6**: discriminação modesta.
+
+**Conclusão honesta:** os dados de hoje permitem *ordenar* a fila de prevenção, não
+*prever* queda individual. O IAQ serve para decidir quem a equipe chama primeiro
+quando há 280 pacientes e agenda para 40.
