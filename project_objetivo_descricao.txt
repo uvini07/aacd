@@ -1,0 +1,63 @@
+PROJETO DE EXTENSÃO - AACD
+Vazio
+Situação-problema: quem precisa de atenção primeiro?
+O cenário
+A AACD (Associação de Assistência à Criança Deficiente) atende adultos e idosos com deficiência física: pessoas com amputação, sequelas de AVC, lesão medular, Parkinson, paralisia cerebral, poliomielite, entre outras condições. Para muitas delas, uma queda não é só um tombo. Ela pode significar fratura, internação, medo de voltar a andar e perda da independência conquistada com anos de reabilitação.
+Durante a Semana de Prevenção de Quedas, a equipe de fisioterapia da AACD fez uma avaliação completa em cerca de 280 pacientes, divididos em duas planilhas: 60 anos ou mais (60+) e 18 a 59 anos (60−). Cada paciente respondeu a perguntas e fez uma bateria de testes:
+O que foi registrado
+Exemplos de colunas
+Quem é o paciente
+sexo, idade, diagnóstico clínico, diagnóstico funcional
+Saúde e rotina
+uso de 5 ou mais remédios (polifarmácia), quem acompanha na terapia e em casa, como se locomove (anda na rua, só em casa, só na terapia, cadeira de rodas)
+Histórico de quedas
+nº de quedas ao chão no último ano, se caiu no último mês
+Cognição
+MoCA e 10-CS (testes de memória e atenção)
+Força
+preensão da mão (dinamômetro), sentar e levantar em 30 s, ponte
+Massa muscular
+circunferência da panturrilha e do braço
+Marcha e equilíbrio
+tempo para caminhar 10 metros, dispositivo usado (bengala, muleta, andador, cadeira), equilíbrio (CIF)
+Reação
+toques no BlazePod em 30 s, com e sem uma tarefa mental ao mesmo tempo (dupla tarefa)
+O problema
+A equipe da AACD tem muitos pacientes e pouco tempo. Ela coletou uma grande quantidade de informação, mas ainda não sabe responder a perguntas simples e importantes:
+Quantos pacientes estão caindo, e com que frequência?
+Existe um perfil de quem cai? Idade? Tipo de deficiência? Forma de se locomover? Remédios?
+Quais testes realmente ajudam a identificar quem cai, e quais dão trabalho mas não diferenciam ninguém?
+Dá para usar esses dados para criar um alerta, uma forma de saber quais pacientes devem ser priorizados na prevenção de quedas?
+Os dados estão numa planilha preenchida à mão durante o evento. Há células mescladas, textos escritos de formas diferentes ("andador", "Andador reciprocado", "andador de rodas dianteiras"…), valores com ponto de interrogação e testes diferentes para quem anda e para quem usa cadeira de rodas. Ninguém ainda olhou esses dados com o olhar de um cientista de dados.
+A sua missão
+Vocês são a equipe de Ciência de Dados parceira da AACD neste projeto de extensão. A associação espera receber de vocês:
+Uma base de dados organizada e confiável, com a lista de dúvidas que precisam ser confirmadas com a equipe da AACD.
+Um retrato da população: quem são os pacientes e quantos caem.
+Os fatores associados às quedas: o que diferencia quem caiu de quem não caiu.
+Um modelo de Machine Learning avaliado com honestidade, que responda se os dados permitem estimar o risco e o quanto dá para confiar nele.
+Um perfil de alerta: uma descrição simples dos pacientes que merecem atenção prioritária, que a equipe possa usar no dia a dia.
+Recomendações para as próximas coletas.
+O resultado final será apresentado à AACD e em um banner no evento de extensão.
+O caminho: 4 atividades
+Atividade
+Pergunta que ela responde
+O que vocês entregam
+1 – Preparação e descrição dos dados
+Os dados estão prontos para uso? Quantos caíram?
+Base organizada, tabela de problemas encontrados, primeiros gráficos
+2 – Perfil e fatores associados
+Quem cai é diferente de quem não cai? Em quê?
+Perfil da população 60+, testes estatísticos, comparação com valores de referência
+3 – Modelo de classificação
+Um modelo consegue identificar quem caiu? Ele é melhor que uma regra simples?
+Comparação de modelos e avaliação honesta do desempenho
+4 – Interpretação e devolutiva
+O que a AACD deve fazer com isso?
+Perfil de alerta, conclusões, recomendações, relatório e banner
+O foco do estudo são os pacientes com 60 anos ou mais. A planilha dos mais jovens (60−) serve como comparação.
+Regras do jogo
+São dados reais de saúde, protegidos pela LGPD. A base só circula entre a turma. Não publiquem, não compartilhem e não tentem identificar ninguém. No banner aparecem apenas resultados agregados (porcentagens, médias, gráficos).
+Os dados contam o passado. As quedas aconteceram antes dos testes. Vocês vão descobrir quem já caiu.
+Honestidade acima de tudo. Um resultado modesto, bem explicado, vale mais para a AACD do que um número bonito e errado. Não corrijam dados por suposição: na dúvida, perguntem à AACD.
+Pensem em quem vai ler. A equipe da AACD é formada por fisioterapeutas, não por programadores. Cada conclusão precisa caber em uma frase que eles entendam e possam usar.
+Ao final do projeto, a AACD deve conseguir responder: "Quais dos nossos pacientes merecem atenção primeiro para prevenir quedas, e o que devemos mudar na forma de coletar os dados?"
