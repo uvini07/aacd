@@ -136,7 +136,7 @@ As referências do repositório dão cortes prontos. Aplicados à aba 60+:
 | Referência | Corte | Resultado |
 |---|---|---|
 | World Falls Guidelines 2022 (ref. 1) | Velocidade < 0,8 m/s | **75,5%** abaixo (80/106) |
-| Força de preensão (ref. 2) | < 30 kg H / < 20 kg M | **52,8%** abaixo (85/161) |
+| Força de preensão — EWGSOP2, 2019 | < 27 kg H / < 16 kg M | **31,7%** abaixo (51/161) |
 | MoCA (ref. 5) | < 26 | **86,7%** abaixo (65/75) |
 | 10-CS (ref. 6) | ≤ 5 provável déficit | 6 pacientes; 17 possível; 42 normais |
 
@@ -163,7 +163,7 @@ Aba 60+, campos com mais lacunas:
 | Campo | Sem dado | Leitura |
 |---|---|---|
 | Custo dupla tarefa | 100% | Coluna derivada, nunca calculada — não é dado perdido |
-| Braço D / E | 92% / 94% | Praticamente inexistente; descartar |
+| Braço D / E | 92% / 94% | **Medida substituta** da panturrilha em amputação e lesão medular — não descartar |
 | Diagnóstico Funcional | 83% | Só preenchido quando havia hemiparesia |
 | Sentar/levantar 30 s | 72% | **Não é lacuna — ver abaixo** |
 | 10-CS | 61% | Aplicado em parte da amostra |
@@ -386,3 +386,80 @@ A taxa sobe de forma monotônica — o índice ordena o risco. Em validação cr
 **Conclusão honesta:** os dados de hoje permitem *ordenar* a fila de prevenção, não
 *prever* queda individual. O IAQ serve para decidir quem a equipe chama primeiro
 quando há 280 pacientes e agenda para 40.
+
+
+---
+
+## Correções após o documento da equipe de fisioterapia
+
+O documento *Interpretação dos componentes inseridos na planilha*, enviado depois
+do primeiro diagnóstico, corrigiu três conclusões:
+
+| O que este relatório dizia antes | O que é de fato |
+|---|---|
+| Circunferência do braço: descartar | É a **medida substituta** da panturrilha em amputação e lesão medular. Confirmado nos dados: os 13 pacientes com braço medido são exatamente os sem panturrilha (p < 0,001). |
+| Corte de sarcopenia 30/20 | Esses são do EWGSOP**1**. O EWGSOP2 (2019) usa **27/16**, e a prevalência cai de 52,8% para 31,7%. |
+| Unir ponte e sentar/levantar numa variável | O documento pede **tratamento estatístico separado**. A união serve para medir cobertura, não para entrar no modelo como um número só. |
+
+E trouxe as tabelas normativas brasileiras que faltavam, agora em
+`scripts/normativos.py` com a fonte de cada valor.
+
+---
+
+## Notebook 02 — engenharia de variáveis
+
+`02_engenharia_variaveis.ipynb` faz a codificação (binária, ordinal, one-hot),
+aplica os normativos brasileiros e responde qual teste vale o trabalho.
+
+### O ganho maior: normativo em vez de corte importado
+
+| Abordagem | Resultado |
+|---|---|
+| MoCA < 26 (corte internacional) | 86,7% "alterados" — satura, não prioriza ninguém |
+| MoCA em z-score do normativo BR por idade | **z mediano +0,13**; só 6,7% abaixo de −2 dp |
+
+A cognição desta população **não está alterada** — o corte importado é que era
+inadequado, exatamente como o documento alertava.
+
+### O retrato revisado
+
+O comprometimento é **localizado em membros inferiores**, não global:
+
+| Domínio | % da referência | Leitura |
+|---|---|---|
+| Força de preensão | ~88% do normativo BR | preservada |
+| Panturrilha | 90% acima do corte BR | preservada |
+| MoCA (ajustado por idade) | na média normativa | preservada |
+| **Sentar/levantar 30 s** | **3 de 44 atingem a referência** | **comprometido** |
+
+Faz sentido clínico: a deficiência é de membros inferiores, e os braços são *mais*
+usados que na população geral (muletas, andador, propulsão de cadeira). Medidas
+globais de força e cognição não discriminam quem cai porque não é ali que está o
+problema — e isso responde à pergunta da AACD sobre quais testes diferenciam.
+
+### A troca que economiza tempo
+
+**BlazePod em dupla tarefa × MoCA: ρ = 0,72** (p < 10⁻¹⁰, n = 72), com 96% de
+cobertura contra 45%, e 30 segundos contra 10 minutos. A versão em dupla tarefa
+correlaciona mais com cognição que a simples (0,72 vs 0,63), o que valida o desenho
+do teste. Para triagem em evento de massa, é a substituição mais rentável que os
+dados apontam.
+
+### O que não funcionou
+
+Clusterização: silhueta 0,18 e χ² p = 1,0. Não existem perfis separáveis — a
+população é um contínuo de gravidade. Vale reportar como resultado negativo em vez
+de forçar grupos inexistentes.
+
+E a bateria **não é redundante**: 5 de 7 componentes do PCA para 80% da variância,
+com CP1 em apenas 23%. Não há testes repetidos para cortar; o que se corta é o de
+cobertura baixa.
+
+### Recomendações de coleta, por retorno
+
+| Recomendação | Custo | Retorno |
+|---|---|---|
+| **Escolaridade** | uma pergunta | destrava a interpretação do MoCA e do 10-CS no Brasil |
+| **As outras 2 Perguntas-Chave** | duas perguntas | completa o 3KQ; a base só tem a primeira |
+| **Exposição** (horas/dia em pé) | uma pergunta | resolve o paradoxo da seção 3 |
+| **Braço nos 70 sem panturrilha** | já está no protocolo | recupera 57 pacientes sem medida de massa muscular |
