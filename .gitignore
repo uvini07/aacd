@@ -9,3 +9,4 @@ __pycache__/
 
 # Notebook com saidas executadas: as tabelas trazem linhas de paciente.
 *_EXECUTADO.ipynb
+base_consolidada.csv
